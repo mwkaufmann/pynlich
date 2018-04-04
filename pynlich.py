@@ -1,5 +1,4 @@
-
-__pragma__('alias', 'jq', '$')
+# __pragma__('alias', 'jq', '$')
 __pragma__('kwargs')
 
 ################################################################################
@@ -189,7 +188,6 @@ class Component:
         if self.init:
             self.init()
 
-
     def attr(self, **kwargs):
         for k in kwargs.keys():
             setattr(self, k, kwargs[k])
@@ -257,14 +255,12 @@ class Component:
             if not child:
                 continue
 
-
             if type(child) is str or type(child) is int:
                 fragment.appendChild(document.createTextNode(str(child)))
             else:
                 # TODO: child render could still fail, if already rendered element has been passed
                 # TODO: child render can feail here, if a list was passed
                 if type(child) is list:
-                    if DEBUG: console.log('warning, list passed to render func')
                     child = child[0]
                 c = child.render()
                 if c:
@@ -275,25 +271,11 @@ class Component:
         return element
 
     def update(self):
-        # console.log("replacing")
-        # console.log(self._cache)
-        # console.log("with")
-        # console.log(self.render())
-
         old_element = self._cache
         if old_element:
             old_element.parentNode.replaceChild(self.render(), old_element)
             old_element.remove()
             Router.call_mounts()
-
-    def remove_class(self, class_name):
-        jq(self._cache).removeClass(class_name)
-
-    def add_class(self, class_name):
-        jq(self._cache).addClass(class_name)
-
-    def find(self, selector):
-        return jq(self._cache).find(selector)
 
     def bind(self, event_name, callback, *args):
         self._events.append(Event(event_name, callback, *args))
@@ -303,7 +285,6 @@ class Component:
         # register mount for later processing
         self._mounts.append(cb)
         return self
-
 
     # def _save_to_html(self):
     #     """ experimental saving the pynlich generated html to disk """

@@ -7,7 +7,8 @@ class SimplePage(Component):
         console.log("site has been loaded")
 
     def html(self):
-        return DIV("this is the example page.")
+        test_div = DIV("this is the example page.")
+        return test_div
 
 
 def init():

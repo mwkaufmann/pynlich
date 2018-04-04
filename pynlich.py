@@ -92,9 +92,10 @@ class Router(object):
             history.pushState(None, "", route)
 
         else:
-            console.log(route)
-            # TODO: fix this
-            # history.replaceState(None, "", route)
+
+            # only use replaceState if file is not served from local file system, else an exception will be thrown
+            if document.location.host:
+                history.replaceState(None, "", route)
 
         # finally replace the old content with the new one
         chosen_page = cls.routes[route]()

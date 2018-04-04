@@ -1,14 +1,28 @@
-from pynlich import Component, DIV, Router
+from pynlich import Component, DIV, Router, BUTTON
 
 
 class SimplePage(Component):
 
     def init(self):
-        console.log("site has been loaded")
+        self.counter = 0
+
+    def increase_counter(self):
+        self.counter += 1
+        self.update()
 
     def html(self):
-        test_div = DIV("this is the example page.")
-        return test_div
+        return DIV(
+            f"This is the pynlich sample page: You have clicked the button {self.counter} times",
+            BUTTON("click me").bind("click", self.increase_counter),
+            style=dict(
+                display="flex",
+                flexDirection="column",
+                justifyContent="center",
+                alignItems="center",
+                width="100%",
+                height="100%"
+            )
+        )
 
 
 def init():

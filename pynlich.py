@@ -102,7 +102,6 @@ class Router(object):
         page.children.append(chosen_page)
         cls.active_route = route
 
-        # jq("#" + container).replaceWith(page.render())
         old_element = document.getElementById(container)
         document.getElementById(container).replaceWith(page.render())
         old_element.remove()

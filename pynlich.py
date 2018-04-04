@@ -93,7 +93,9 @@ class Router(object):
             history.pushState(None, "", route)
 
         else:
-            history.replaceState(None, "", route)
+            console.log(route)
+            # TODO: fix this
+            # history.replaceState(None, "", route)
 
         # finally replace the old content with the new one
         chosen_page = cls.routes[route]()
@@ -147,7 +149,8 @@ class Router(object):
             Router.load(window.location.hash, pushState=False)
 
         # if user changes hash from hand, also load the new content
-        jq(window).on("hashchange", lambda: hash_changed())
+        # jq(window).on("hashchange", lambda: hash_changed())
+        window.addEventListener("hashchange", lambda: hash_changed())
 
         # check if hash already exists
         if window.location.hash:

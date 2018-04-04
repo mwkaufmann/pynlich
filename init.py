@@ -1,4 +1,4 @@
-from pynlich import Component, DIV
+from pynlich import Component, DIV, Router
 
 
 class SimplePage(Component):

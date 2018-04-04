@@ -1,4 +1,3 @@
-from scripts.settings import DEBUG
 
 __pragma__('alias', 'jq', '$')
 __pragma__('kwargs')
@@ -254,7 +253,6 @@ class Component:
         # render all children
         for child in flattened:
             if not child:
-                if DEBUG: console.log("warning, null has been passed to render func")
                 continue
 
 
